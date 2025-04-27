@@ -1,8 +1,4 @@
-package com.zos.exception;
 
-public class ErrorDetails {
-    
-}
 package com.zos.exception;
 
 import java.time.LocalDateTime;
