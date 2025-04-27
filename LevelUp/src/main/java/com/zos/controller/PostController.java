@@ -82,7 +82,7 @@ public class PostController {
     }
 
 
-    @PutMapping("/like/{postId}")
+    @PutMapping("/like/{postId}") /*post like */
     public ResponseEntity<Post> likePostHandler(@PathVariable("postId") Integer postId, @RequestHeader("Authorization") String token) throws UserException, PostException {
 
         User user = userService.findUserProfile(token);
@@ -94,7 +94,7 @@ public class PostController {
     }
 
 
-    @PutMapping("/unlike/{postId}")
+    @PutMapping("/unlike/{postId}") /*post unlike */
     public ResponseEntity<Post> unLikePostHandler(@PathVariable("postId") Integer postId, @RequestHeader("Authorization") String token) throws UserException, PostException {
 
         User reqUser = userService.findUserProfile(token);
