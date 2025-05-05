@@ -9,6 +9,7 @@ import com.zos.exception.UserException;
 import com.zos.model.Post;
 import com.zos.model.User;
 
+
 public interface UserService {
 
     User registerUser(User user) throws UserException;
