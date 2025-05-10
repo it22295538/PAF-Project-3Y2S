@@ -55,3 +55,17 @@ export const likeComment=(data)=>async(dispatch)=>{
     console.log("like comment :- ",resData)
     dispatch({type:LIKE_COMMENT,paylod:resData});
 }
+
+export const unLikeComment=(data)=>async(dispatch)=>{
+    const res = await fetch(`${BASE_URL}/api/comments/unlike/${data.commentId}`,{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json",
+            Authorization:'Bearer '+data.jwt,
+        },
+        body:JSON.stringify(data.data)
+    })
+    const resData=await res.json();
+    console.log("unliked comment ",resData)
+    dispatch({type:UNLIKE_COMMENT,paylod:resData});
+  }
