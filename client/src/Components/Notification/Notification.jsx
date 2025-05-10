@@ -33,3 +33,6 @@ const Notification = () => {
         const bootstrapModal = new Modal(modalElement);
         setModal(bootstrapModal);
     }, []);
+    useEffect(() => {
+        dispatch(getNotificationsAction(token));
+    }, [token, dispatch]);
