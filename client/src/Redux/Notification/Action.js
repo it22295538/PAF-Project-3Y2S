@@ -3,6 +3,8 @@ import { BASE_URL } from "../../Config/api";
 import {
     GET_NOTIFICATIONS,
     GET_UNREAD_NOTIFICATIONS,
+    MARK_NOTIFICATION_AS_READ,
+
 
 } from "./ActionType";
 
@@ -48,4 +50,25 @@ export const getUnreadNotificationsAction = (token) => async (dispatch) => {
 
 };
 export const markNotificationAsReadAction = (notificationId) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BASE_URL}/api/notifications/read/${notificationId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+            },
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to mark notification as read');
+        }
+
+        const notification = await res.json();
+        dispatch({ type: MARK_NOTIFICATION_AS_READ, payload: notification });
+        return notification;
+    } catch (error) {
+        dispatch({ type: NOTIFICATION_ERROR, payload: error.message });
+        throw error;
+    }
 };
