@@ -26,3 +26,10 @@ const Notification = () => {
 
     // Reference for the modal
     const [modal, setModal] = useState(null);
+
+    useEffect(() => {
+        // Initialize Bootstrap modal
+        const modalElement = document.getElementById('markAsReadModal');
+        const bootstrapModal = new Modal(modalElement);
+        setModal(bootstrapModal);
+    }, []);
