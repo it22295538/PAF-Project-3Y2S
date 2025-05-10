@@ -94,3 +94,5 @@ export const deleteNotificationAction = (notificationId) => async (dispatch) => 
         throw error;
     }
 };
+export const createNotificationAction = (notification, token) => async (dispatch) => {
+};
