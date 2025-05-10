@@ -80,6 +80,12 @@ import {
           handleAddComment();
         } else return;
       };
+
+      const handleClose = () => {
+        onClose();
+        navigate("/");
+      };
+    
 };
 
 export default CommentModal;
