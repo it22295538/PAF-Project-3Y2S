@@ -83,3 +83,17 @@ export const unLikeComment=(data)=>async(dispatch)=>{
     console.log("edited comment ",resData)
     dispatch({type:EDIT_COMMENT,payload:resData});
   }
+
+  export const deleteComment=(data)=>async(dispatch)=>{
+    const res = await fetch(`${BASE_URL}/api/comments/delete/${data.commentId}`,{
+        method:"DELETE",
+        headers:{
+            "Content-Type":"application/json",
+            Authorization:'Bearer '+data.jwt,
+        },
+        body:JSON.stringify(data.data)
+    })
+    const resData=await res.json();
+    console.log("deleted comment ",resData)
+    dispatch({type:DELETE_COMMENT,payload:resData});
+  }
