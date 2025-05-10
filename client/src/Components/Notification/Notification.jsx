@@ -244,3 +244,51 @@ const Notification = () => {
                     </div>
                 </div>
             </div>
+        {/* Mark as Read Confirmation Modal */}
+            <div className="modal fade" id="markAsReadModal" tabIndex="-1">
+                <div className="modal-dialog modal-dialog-centered">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Mark as Read</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div className="modal-body">
+                            <p>Are you sure you want to mark this notification as read?</p>
+                            {selectedNotification && (
+                                <div className="p-3 bg-light rounded">
+                                    <div className="d-flex align-items-center gap-2">
+                                        <img
+                                            className="rounded-circle"
+                                            src={selectedNotification.user.userImage}
+                                            alt=""
+                                            style={{ width: '30px', height: '30px', objectFit: 'cover' }}
+                                        />
+                                        <div>
+                                            <p className="mb-0">
+                                                <strong>{selectedNotification.user.username}</strong>
+                                                {" "}{selectedNotification.message}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                            <button 
+                                type="button" 
+                                className="btn btn-primary"
+                                onClick={() => handleMarkAsRead(selectedNotification)}
+                                disabled={loading}
+                            >
+                                {loading ? 'Marking...' : 'Mark as Read'}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Notification;
