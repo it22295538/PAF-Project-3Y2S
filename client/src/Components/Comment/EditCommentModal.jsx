@@ -9,3 +9,10 @@ import {
     ModalOverlay,
     useDisclosure,
   } from "@chakra-ui/react";
+
+  function EditCommentModal({ isOpen, onOpen, onClose,handleProfileImageChange }) {
+  
+    
+  }
+  
+  export default EditCommentModal;
