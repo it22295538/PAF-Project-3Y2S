@@ -114,3 +114,14 @@ const Notification = () => {
                 return null;
         }
     };
+    const filterNotifications = () => {
+        let filteredNotifications = [...notification.notifications];
+        switch (activeTab) {
+            case 'unread':
+                return filteredNotifications.filter(item => !readNotifications.has(item.id));
+            case 'read':
+                return filteredNotifications.filter(item => readNotifications.has(item.id));
+            default:
+                return filteredNotifications;
+        }
+    };
