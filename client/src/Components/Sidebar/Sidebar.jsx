@@ -75,7 +75,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className=" sticky top-0 h-[100vh] pb-10 flex">
+<div className="sticky top-0 h-[1200px] pb-10 flex bg-gradient-to-b from-blue-400 to-blue-900 text-white">
       <div className={`${activeTab === "Search" ? "px-3" : "px-10"} flex flex-col justify-between h-full`}>
         <div className="pt-10">
           {!isSearchBoxVisible && (
