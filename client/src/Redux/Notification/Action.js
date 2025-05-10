@@ -2,6 +2,7 @@
 import { BASE_URL } from "../../Config/api";
 import {
     GET_NOTIFICATIONS,
+    GET_UNREAD_NOTIFICATIONS,
 
 } from "./ActionType";
 
@@ -26,5 +27,23 @@ export const getNotificationsAction = (token) => async (dispatch) => {
     }
 };
 export const getUnreadNotificationsAction = (token) => async (dispatch) => {
+    try {
+        const res = await fetch(`${BASE_URL}/api/notifications/unread`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+            },
+        });
 
-}
+        if (!res.ok) {
+            throw new Error('Failed to fetch unread notifications');
+        }
+
+        const notifications = await res.json();
+        dispatch({ type: GET_UNREAD_NOTIFICATIONS, payload: notifications });
+    } catch (error) {
+        dispatch({ type: NOTIFICATION_ERROR, payload: error.message });
+    }
+
+};
