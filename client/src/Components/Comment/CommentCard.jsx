@@ -50,6 +50,19 @@ const CommentCard = ({ comment }) => {
   const handleDeleteComment = () => {
     dispatch(deleteComment({ commentId: comment.id, jwt }));
   };
+
+  const handleEditComment = (e) => {
+    if(e.key==="Enter"){
+      dispatch(
+      editComment({ data: { id: comment?.id, content: commentContent }, jwt })
+     
+    );
+     setIsEditCommentInputOpen(false);
+     setCommentContent("")
+    }
+    
+  };
+
   
   };
   
