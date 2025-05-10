@@ -72,3 +72,5 @@ export const markNotificationAsReadAction = (notificationId) => async (dispatch)
         throw error;
     }
 };
+export const deleteNotificationAction = (notificationId) => async (dispatch) => {
+};
