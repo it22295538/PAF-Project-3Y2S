@@ -41,3 +41,17 @@ export const createComment = (data) => async (dispatch) => {
     const resData=await res.json();
     dispatch({type:"GET_USER_POST",paylod:resData});
 }
+
+export const likeComment=(data)=>async(dispatch)=>{
+    const res= await fetch(`${BASE_URL}/api/comments/like/${data.commentId}`,{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json",
+            Authorization:'Bearer '+data.jwt,
+        },
+        body:JSON.stringify(data.data)
+    })
+    const resData=await res.json();
+    console.log("like comment :- ",resData)
+    dispatch({type:LIKE_COMMENT,paylod:resData});
+}
