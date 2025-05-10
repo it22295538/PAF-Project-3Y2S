@@ -26,4 +26,19 @@ import {
   import CommentCard from "./CommentCard";
   import "./CommentModal.css";
 
+  const CommentModal = ({
+  isOpen,
+  onClose,
+  onOpen,
+  postData,
+  handleLikePost,
+  handleUnLikePost,
+  handleSavePost,
+  handleUnSavePost,
+  isPostLiked,
+  isSaved,
+}) => {
   
+};
+
+export default CommentModal;
