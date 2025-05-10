@@ -125,3 +125,122 @@ const Notification = () => {
                 return filteredNotifications;
         }
     };
+    return (
+        <div className="min-h-screen bg-gray-50 py-8 px-4 sm:px-6 lg:px-8">
+            <div className="max-w-3xl mx-auto">
+                <div className="bg-white rounded-lg shadow overflow-hidden">
+                    <div className="px-6 py-4 border-b border-gray-200">
+                        <h2 className="text-2xl font-bold text-gray-900">Notifications</h2>
+                    </div>
+                    
+                    <div className="border-b border-gray-200">
+                        <nav className="flex -mb-px">
+                            <button
+                                onClick={() => setActiveTab('all')}
+                                className={`py-4 px-6 text-center border-b-2 font-medium text-sm ${
+                                    activeTab === 'all'
+                                        ? 'border-blue-500 text-blue-600'
+                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                }`}
+                            >
+                                All
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('unread')}
+                                className={`py-4 px-6 text-center border-b-2 font-medium text-sm ${
+                                    activeTab === 'unread'
+                                        ? 'border-blue-500 text-blue-600'
+                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                }`}
+                            >
+                                Unread
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('read')}
+                                className={`py-4 px-6 text-center border-b-2 font-medium text-sm ${
+                                    activeTab === 'read'
+                                        ? 'border-blue-500 text-blue-600'
+                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                }`}
+                            >
+                                Read
+                            </button>
+                        </nav>
+                    </div>
+
+                    <div className="divide-y divide-gray-200">
+                        {filterNotifications().length === 0 ? (
+                            <div className="py-12 text-center">
+                                <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                </svg>
+                                <h3 className="mt-2 text-sm font-medium text-gray-900">No notifications</h3>
+                                <p className="mt-1 text-sm text-gray-500">Get started by following some users or creating posts.</p>
+                            </div>
+                        ) : (
+                            filterNotifications().map((item) => (
+                                <div
+                                    key={item.id}
+                                    className={`p-4 ${
+                                        !readNotifications.has(item.id)
+                                            ? 'bg-blue-50'
+                                            : justMarkedAsRead === item.id
+                                            ? 'bg-green-50'
+                                            : 'bg-white'
+                                    } transition-colors duration-200`}
+                                >
+                                    <div className="flex items-start">
+                                        <div className="flex-shrink-0">
+                                            {getNotificationIcon(item.type)}
+                                        </div>
+                                        <div className="ml-3 flex-1">
+                                            <div className="flex items-center justify-between">
+                                                <div className="flex items-center space-x-2">
+                                                    <img
+                                                        className="h-8 w-8 rounded-full"
+                                                        src={item.user.userImage || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                                                        alt=""
+                                                    />
+                                                    <p className="text-sm font-medium text-gray-900">
+                                                        <span className="font-bold">{item.user.username}</span>
+                                                        {" "}{item.message}
+                                                    </p>
+                                                </div>
+                                                <div className="flex space-x-2">
+                                                    {!readNotifications.has(item.id) && (
+                                                        <button
+                                                            onClick={() => handleMarkAsRead(item)}
+                                                            disabled={loading}
+                                                            className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                                                        >
+                                                            Mark as read
+                                                        </button>
+                                                    )}
+                                                    <button
+                                                        onClick={() => handleDelete(item.id)}
+                                                        disabled={loading}
+                                                        className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-red-700 bg-red-100 hover:bg-red-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                                                    >
+                                                        Delete
+                                                    </button>
+                                                    {item.postId && (
+                                                        <button
+                                                            onClick={() => handleNavigateToPost(item.postId)}
+                                                            className="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                                        >
+                                                            View Post
+                                                        </button>
+                                                    )}
+                                                </div>
+                                            </div>
+                                            <p className="mt-1 text-xs text-gray-500">
+                                                {timeDifference(item.createdAt)}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))
+                        )}
+                    </div>
+                </div>
+            </div>
