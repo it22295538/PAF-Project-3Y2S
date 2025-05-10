@@ -52,3 +52,9 @@ const Notification = () => {
             return () => clearTimeout(timer);
         }
     }, [justMarkedAsRead]);
+    useEffect(() => {
+        if (notification.error) {
+            toast.error(notification.error);
+            dispatch(clearNotificationError());
+        }
+    }, [notification.error, dispatch]);
