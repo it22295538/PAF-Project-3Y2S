@@ -44,3 +44,11 @@ const Notification = () => {
         );
         setReadNotifications(readIds);
     }, [notification.notifications]);
+    useEffect(() => {
+        if (justMarkedAsRead) {
+            const timer = setTimeout(() => {
+                setJustMarkedAsRead(null);
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [justMarkedAsRead]);
