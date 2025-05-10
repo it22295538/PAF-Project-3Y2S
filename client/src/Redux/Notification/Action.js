@@ -6,10 +6,8 @@ import {
     MARK_NOTIFICATION_AS_READ,
     DELETE_NOTIFICATION,
     CREATE_NOTIFICATION,
-
-
-
-
+    NOTIFICATION_ERROR
+    CLEAR_NOTIFICATION_ERROR
 } from "./ActionType";
 
 export const getNotificationsAction = (token) => async (dispatch) => {
@@ -120,5 +118,5 @@ try {
     }
 };
 export const clearNotificationError = () => ({
-  
+    type: CLEAR_NOTIFICATION_ERROR,
 });
