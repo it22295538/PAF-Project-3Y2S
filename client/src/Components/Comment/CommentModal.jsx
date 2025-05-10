@@ -59,6 +59,18 @@ import {
         }
       }, [postId, comments?.createdComment, comments?.deletedComment, comments?. updatedComment]);
     
+      const handleAddComment = () => {
+        const data = {
+          jwt,
+          postId,
+          data: {
+            content: commentContent,
+          },
+        };
+        console.log("comment content ", commentContent);
+        dispatch(createComment(data));
+        setCommentContent("");
+      };
 };
 
 export default CommentModal;
