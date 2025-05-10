@@ -23,3 +23,6 @@ const Notification = () => {
     const [readNotifications, setReadNotifications] = useState(new Set());
     const [selectedNotification, setSelectedNotification] = useState(null);
     const [justMarkedAsRead, setJustMarkedAsRead] = useState(null);
+
+    // Reference for the modal
+    const [modal, setModal] = useState(null);
