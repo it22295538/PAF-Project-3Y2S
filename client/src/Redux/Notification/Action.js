@@ -119,3 +119,6 @@ try {
         throw error;
     }
 };
+export const clearNotificationError = () => ({
+  
+});
