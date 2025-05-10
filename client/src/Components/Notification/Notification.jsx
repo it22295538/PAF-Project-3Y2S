@@ -16,3 +16,10 @@ import { Modal } from 'bootstrap';
 const Notification = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const { notification } = useSelector((store) => store);
+    const token = localStorage.getItem("token");
+    const [loading, setLoading] = useState(false);
+    const [activeTab, setActiveTab] = useState('all');
+    const [readNotifications, setReadNotifications] = useState(new Set());
+    const [selectedNotification, setSelectedNotification] = useState(null);
+    const [justMarkedAsRead, setJustMarkedAsRead] = useState(null);
