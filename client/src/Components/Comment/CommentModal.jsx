@@ -71,6 +71,15 @@ import {
         dispatch(createComment(data));
         setCommentContent("");
       };
+
+      const handleCommnetInputChange = (e) => {
+        setCommentContent(e.target.value);
+      };
+      const handleOnEnterPress = (e) => {
+        if (e.key === "Enter") {
+          handleAddComment();
+        } else return;
+      };
 };
 
 export default CommentModal;
