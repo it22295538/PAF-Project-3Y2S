@@ -87,3 +87,8 @@ const Notification = () => {
             setLoading(false);
         }
     };
+    const handleNavigateToPost = (postId) => {
+        if (postId) {
+            navigate(`/p/${postId}`);
+        }
+    };
