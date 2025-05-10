@@ -36,3 +36,11 @@ const Notification = () => {
     useEffect(() => {
         dispatch(getNotificationsAction(token));
     }, [token, dispatch]);
+    useEffect(() => {
+        const readIds = new Set(
+            notification.notifications
+                .filter(item => item.isRead)
+                .map(item => item.id)
+        );
+        setReadNotifications(readIds);
+    }, [notification.notifications]);
