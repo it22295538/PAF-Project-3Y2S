@@ -16,6 +16,23 @@ const CommentCard = ({ comment }) => {
   const jwt = localStorage.getItem("token");
   const [isEditCommentInputOpen, setIsEditCommentInputOpen] = useState(false);
   const [commentContent, setCommentContent] = useState("");
+
+  useEffect(() => {
+    setCommentContent(comment?.content);
+  }, [comment]);
+
+  const handleLikeComment = () => {
+    dispatch(likeComment({ jwt, commentId: comment.id }));
+    setIsCommentLike(true);
+    setCommentLikes(commentLikes + 1);
+  };
+
+  const handleUnLikeComment = () => {
+    dispatch(likeComment({ jwt, commentId: comment.id }));
+    setIsCommentLike(false);
+    setCommentLikes(commentLikes - 1);
+  };
+  
   };
   
   export default CommentCard;
