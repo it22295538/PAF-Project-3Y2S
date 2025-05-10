@@ -58,3 +58,8 @@ const Notification = () => {
             dispatch(clearNotificationError());
         }
     }, [notification.error, dispatch]);
+
+     const openMarkAsReadModal = (notification) => {
+        setSelectedNotification(notification);
+        modal?.show();
+    };
