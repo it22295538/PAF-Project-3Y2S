@@ -76,3 +76,14 @@ const Notification = () => {
             setLoading(false);
         }
     };
+     const handleDelete = async (notificationId) => {
+        try {
+            setLoading(true);
+            await dispatch(deleteNotificationAction(notificationId));
+            toast.success("Notification deleted successfully");
+        } catch (error) {
+            toast.error("Failed to delete notification");
+        } finally {
+            setLoading(false);
+        }
+    };
