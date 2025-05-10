@@ -4,6 +4,8 @@ import {
     GET_NOTIFICATIONS,
     GET_UNREAD_NOTIFICATIONS,
     MARK_NOTIFICATION_AS_READ,
+    DELETE_NOTIFICATION,
+
 
 
 } from "./ActionType";
@@ -73,4 +75,22 @@ export const markNotificationAsReadAction = (notificationId) => async (dispatch)
     }
 };
 export const deleteNotificationAction = (notificationId) => async (dispatch) => {
+    try {
+        const token = localStorage.getItem("token");
+        const res = await fetch(`${BASE_URL}/api/notifications/delete/${notificationId}`, {
+            method: "DELETE",
+            headers: {
+                Authorization: "Bearer " + token,
+            },
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to delete notification');
+        }
+
+        dispatch({ type: DELETE_NOTIFICATION, payload: notificationId });
+    } catch (error) {
+        dispatch({ type: NOTIFICATION_ERROR, payload: error.message });
+        throw error;
+    }
 };
