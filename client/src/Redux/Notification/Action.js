@@ -25,3 +25,6 @@ export const getNotificationsAction = (token) => async (dispatch) => {
         dispatch({ type: NOTIFICATION_ERROR, payload: error.message });
     }
 };
+export const getUnreadNotificationsAction = (token) => async (dispatch) => {
+
+}
