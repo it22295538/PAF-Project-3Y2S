@@ -6,3 +6,8 @@ import {
     DELETE_NOTIFICATION,
     CREATE_NOTIFICATION
 } from "./ActionType";
+
+const initialState = {
+    notifications: [],
+    unreadNotifications: [],
+};
