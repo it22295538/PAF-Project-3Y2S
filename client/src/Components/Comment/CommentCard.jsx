@@ -32,6 +32,24 @@ const CommentCard = ({ comment }) => {
     setIsCommentLike(false);
     setCommentLikes(commentLikes - 1);
   };
+
+  useEffect(() => {
+    setCommentLikes(comment?.likedByUsers?.length);
+  }, [comment]);
+
+  useEffect(() => {
+    setIsCommentLike(isCommentLikedByUser(comment, user.reqUser?.id));
+  }, [comment, user.reqUser]);
+
+  const handleClickOnEditComment = () => {
+    setIsEditCommentInputOpen(!isEditCommentInputOpen);
+  };
+  const handleCommnetInputChange = (e) => {
+    setCommentContent(e.target.value);
+  };
+  const handleDeleteComment = () => {
+    dispatch(deleteComment({ commentId: comment.id, jwt }));
+  };
   
   };
   
