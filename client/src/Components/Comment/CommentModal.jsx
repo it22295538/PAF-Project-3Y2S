@@ -38,7 +38,27 @@ import {
   isPostLiked,
   isSaved,
 }) => {
+    const dispatch = useDispatch();
+    const jwt = localStorage.getItem("token");
+    const { post, comments, user } = useSelector((store) => store);
+    const [commentContent, setCommentContent] = useState("");
+    const { postId } = useParams();
+    const navigate = useNavigate();
   
+    // console.log("coments ---- ",comments)
+
+    useEffect(() => {
+        if (postId) {
+          dispatch(
+            findPostByIdAction({
+              jwt,
+              postId,
+            })
+          );
+          dispatch(getAllComments({jwt,postId}))
+        }
+      }, [postId, comments?.createdComment, comments?.deletedComment, comments?. updatedComment]);
+    
 };
 
 export default CommentModal;
