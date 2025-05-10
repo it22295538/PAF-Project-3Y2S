@@ -69,3 +69,17 @@ export const unLikeComment=(data)=>async(dispatch)=>{
     console.log("unliked comment ",resData)
     dispatch({type:UNLIKE_COMMENT,paylod:resData});
   }
+
+  export const editComment=(data)=>async(dispatch)=>{
+    const res = await fetch(`${BASE_URL}/api/comments/edit`,{
+        method:"PUT",
+        headers:{
+            "Content-Type":"application/json",
+            Authorization:'Bearer '+data.jwt,
+        },
+        body:JSON.stringify(data.data)
+    })
+    const resData=await res.json();
+    console.log("edited comment ",resData)
+    dispatch({type:EDIT_COMMENT,payload:resData});
+  }
