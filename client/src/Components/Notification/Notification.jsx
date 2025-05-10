@@ -63,3 +63,16 @@ const Notification = () => {
         setSelectedNotification(notification);
         modal?.show();
     };
+    const handleMarkAsRead = async (notification) => {
+        try {
+            setLoading(true);
+            await dispatch(markNotificationAsReadAction(notification.id));
+            setReadNotifications(prev => new Set([...prev, notification.id]));
+            setJustMarkedAsRead(notification.id);
+            toast.success("Notification marked as read");
+        } catch (error) {
+            toast.error("Failed to mark notification as read");
+        } finally {
+            setLoading(false);
+        }
+    };
