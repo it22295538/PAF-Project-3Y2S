@@ -27,3 +27,17 @@ export const createComment = (data) => async (dispatch) => {
   
   
   };
+
+  export const findPostComment=(data)=>async(dispatch)=>{
+    const res= await fetch(`${BASE_URL}/api/comments/${data.postId}`,{
+        method:"GET",
+       
+     headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + data.jwt,
+      },
+        body:JSON.stringify(data.data)
+    })
+    const resData=await res.json();
+    dispatch({type:"GET_USER_POST",paylod:resData});
+}
