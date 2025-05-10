@@ -47,3 +47,5 @@ export const getUnreadNotificationsAction = (token) => async (dispatch) => {
     }
 
 };
+export const markNotificationAsReadAction = (notificationId) => async (dispatch) => {
+};
