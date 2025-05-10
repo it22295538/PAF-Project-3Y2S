@@ -5,6 +5,8 @@ import {
     GET_UNREAD_NOTIFICATIONS,
     MARK_NOTIFICATION_AS_READ,
     DELETE_NOTIFICATION,
+    CREATE_NOTIFICATION,
+
 
 
 
@@ -95,4 +97,25 @@ export const deleteNotificationAction = (notificationId) => async (dispatch) => 
     }
 };
 export const createNotificationAction = (notification, token) => async (dispatch) => {
+try {
+        const res = await fetch(`${BASE_URL}/api/notifications/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + token,
+            },
+            body: JSON.stringify(notification),
+        });
+
+        if (!res.ok) {
+            throw new Error('Failed to create notification');
+        }
+
+        const newNotification = await res.json();
+        dispatch({ type: CREATE_NOTIFICATION, payload: newNotification });
+        return newNotification;
+    } catch (error) {
+        dispatch({ type: NOTIFICATION_ERROR, payload: error.message });
+        throw error;
+    }
 };
