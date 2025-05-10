@@ -8,3 +8,15 @@ import EditCommentModal from "./EditCommentModal";
 import { MdDelete } from "react-icons/md";
 import { editComment } from "../../Redux/Comment/Action";
 
+const CommentCard = ({ comment }) => {
+    const [isCommentLiked, setIsCommentLike] = useState(false);
+  const { user } = useSelector((store) => store);
+  const [commentLikes, setCommentLikes] = useState(0);
+  const dispatch = useDispatch();
+  const jwt = localStorage.getItem("token");
+  const [isEditCommentInputOpen, setIsEditCommentInputOpen] = useState(false);
+  const [commentContent, setCommentContent] = useState("");
+  };
+  
+  export default CommentCard;
+  
