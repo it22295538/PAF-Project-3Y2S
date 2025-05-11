@@ -119,5 +119,101 @@ const EditPostModal = ({ isOpen, onClose, post }) => {
     dispatch(editPOst(data));
     onClose();
   };
+  return (
+    <Modal size={"4xl"} isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent>
+        <div className="flex justify-between py-1 px-10 items-center">
+          <p className="font-semibold">Edit Post</p>
+          <Button
+            onClick={handleSubmit}
+            colorScheme="blue"
+            size={"sm"}
+            isLoading={loading}
+            loadingText="Updating..."
+          >
+            Update
+          </Button>
+        </div>
+
+        <hr className="hrLine" />
+
+        <ModalBody>
+          <div className="modalBodyBox flex h-[70vh] justify-between">
+            <div className="w-[50%] flex flex-col justify-center items-center relative">
+              <div 
+                className="w-full h-full flex items-center justify-center relative group cursor-pointer"
+                onClick={handleImageClick}
+              >
+                {postData.mediaUrls?.length > 0 ? (
+                  <>
+                    <img
+                      className="max-h-[70vh] object-contain"
+                      src={postData.mediaUrls[0]}
+                      alt="post"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                      <p className="text-white text-center">Click to change image</p>
+                    </div>
+                  </>
+                ) : (
+                  <div className="flex flex-col items-center">
+                    <FaPhotoVideo className="text-3xl mb-2" />
+                    <p>Click here to upload photo</p>
+                  </div>
+                )}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                  ref={fileInputRef}
+                  className="hidden"
+                />
+              </div>
+            </div>
+            <div className="w-[1px] border h-full"></div>
+            <div className="w-[50%]">
+              <div className="flex items-center px-2">
+                <img
+                  className="w-7 h-7 rounded-full"
+                  src={user?.reqUser?.image || "https://cdn.pixabay.com/photo/2023/02/28/03/42/ibex-7819817_640.jpg"}
+                  alt=""
+                />
+                <p className="font-semibold ml-4">{user?.reqUser?.username}</p>
+              </div>
+              <div className="px-2">
+                <textarea
+                  className="captionInput"
+                  placeholder="Write a caption..."
+                  name="caption"
+                  rows="8"
+                  value={postData.caption}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="flex justify-between px-2">
+                <GrEmoji />
+                <p className="opacity-70">{postData.caption?.length}/2,200</p>
+              </div>
+              <hr />
+              <div className="p-2 flex justify-between items-center">
+                <input
+                  className="locationInput"
+                  type="text"
+                  placeholder="Add location"
+                  name="location"
+                  value={postData.location}
+                  onChange={handleInputChange}
+                />
+                <GoLocation />
+              </div>
+              <hr />
+            </div>
+          </div>
+        </ModalBody>
+      </ModalContent>
+    </Modal>
+  );
+};
 
 export default EditPostModal;
