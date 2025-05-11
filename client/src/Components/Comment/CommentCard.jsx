@@ -99,19 +99,20 @@ const CommentCard = ({ comment }) => {
             </div>
           </div>
         </div>
-        {isCommentLiked ? (
-          <AiFillHeart
-            onClick={handleUnLikeComment}
-            className="text-xs hover:opacity-50 cursor-pointer text-red-600"
-          />
-        ) : (
-          <AiOutlineHeart
-            onClick={handleLikeComment}
-            className="text-xs hover:opacity-50 cursor-pointer "
-          />
-        )}
+        
       </div>
-      
+      {isEditCommentInputOpen && (
+        <div>
+          <input
+            className=" outline-none border-b border-black text-sm"
+            placeholder="Add Comment..."
+            type="text"
+            onKeyPress={handleEditComment}
+            onChange={handleCommnetInputChange}
+            value={commentContent}
+          />
+        </div>
+      )}
     </div>
   );
 
