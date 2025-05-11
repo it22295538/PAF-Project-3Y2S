@@ -14,6 +14,18 @@ const CreateStory = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
- 
+  const handleFilePick = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        setPreviewImage(fileReader.result);
+      };
+      fileReader.readAsDataURL(file);
+    }
+  };
+
+
 
 export default CreateStory; 
