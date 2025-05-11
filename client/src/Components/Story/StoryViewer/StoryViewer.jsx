@@ -36,6 +36,11 @@ function StoryViewer({ stories }) {
     }
   };
 
+  const handlePrevStory = () => {
+    if (currentStoryIndex > 0) {
+      setCurrentStoryIndex(currentStoryIndex - 1);
+    }
+  };
 
   
 
