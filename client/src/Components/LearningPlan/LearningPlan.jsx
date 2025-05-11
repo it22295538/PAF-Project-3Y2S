@@ -665,7 +665,7 @@ const LearningPlan = () => {
             name="title" 
             label="Topic Title" 
             rules={[
-              { required: true, message: 'Please input the topic title!' },
+              { required: true, message: 'Please input topic title!' },
               { max: 100, message: 'Title must be less than 100 characters' }
             ]}
           >
