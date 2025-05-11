@@ -49,7 +49,11 @@ function StoryViewer({ stories }) {
       handlePrevStory();
     }
   };
-  
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      handleNextStory();
+      
+    }, 2000);
 
    
 
