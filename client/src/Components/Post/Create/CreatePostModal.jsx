@@ -127,6 +127,155 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
     return url.match(/\.(mp4|webm|ogg)$/i);
   };
 
+  return (
+    <div>
+      <Modal
+        size={"4xl"}
+        finalFocusRef={React.useRef(null)}
+        isOpen={isOpen}
+        onClose={handleClose}
+      >
+        <ModalOverlay />
+        <ModalContent fontSize={"sm"}>
+          <div className="flex justify-between py-1 px-10 items-center">
+            <p>Create New Post</p>
+            <Button
+              onClick={handleSubmit}
+              className="inline-flex"
+              colorScheme="blue"
+              size={"sm"}
+              variant="ghost"
+              isDisabled={postData.mediaUrls.length === 0}
+            >
+              Share
+            </Button>
+          </div>
+
+          <hr className="hrLine" />
+
+          <ModalBody>
+            <div className="modalBodyBox flex h-[70vh] justify-between">
+              <div className="w-[50%] flex flex-col justify-center items-center relative">
+                {uploadStatus === "" && (
+                  <div
+                    onDrop={handleDrop}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    className={`drag-drop h-full ${isDragOver ? "border-blue-500" : ""}`}
+                  >
+                    <div className="flex justify-center flex-col items-center">
+                      <FaPhotoVideo className={`text-3xl ${isDragOver ? "text-blue-800" : ""}`} />
+                      <p>Drag photos or videos here</p>
+                    </div>
+
+                    <label htmlFor="file-upload" className="custom-file-upload">
+                      Select from computer
+                    </label>
+                    <input
+                      type="file"
+                      id="file-upload"
+                      accept="image/*, video/*"
+                      multiple
+                      onChange={handleOnChange}
+                    />
+                  </div>
+                )}
+
+                {uploadStatus === "uploading" && <SpinnerCard />}
+
+                {uploadStatus === "uploaded" && (
+                  <div className="w-full h-full relative">
+                    {postData.mediaUrls.map((url, index) => (
+                      <div
+                        key={index}
+                        className={`absolute inset-0 flex items-center justify-center ${
+                          index === currentMediaIndex ? "block" : "hidden"
+                        }`}
+                      >
+                        {isVideo(url) ? (
+                          <video
+                            src={url}
+                            controls
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        ) : (
+                          <img
+                            src={url}
+                            alt={`Media ${index + 1}`}
+                            className="max-h-full max-w-full object-contain"
+                          />
+                        )}
+                      </div>
+                    ))}
+
+                    {postData.mediaUrls.length > 1 && (
+                      <>
+                        {}
+                        <div className="absolute bottom-2 left-0 right-0 flex justify-center space-x-2">
+                          {postData.mediaUrls.map((_, index) => (
+                            <button
+                              key={index}
+                              onClick={() => setCurrentMediaIndex(index)}
+                              className={`w-2 h-2 rounded-full ${
+                                index === currentMediaIndex ? "bg-blue-500" : "bg-gray-300"
+                              }`}
+                              aria-label={`Go to media ${index + 1}`}
+                            />
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+              
+              <div className="w-[1px] border h-full"></div>
+              
+              <div className="w-[50%]">
+                <div className="flex items-center px-2">
+                  <img
+                    className="w-7 h-7 rounded-full"
+                    src={user?.reqUser?.image || "https://cdn.pixabay.com/photo/2023/02/28/03/42/ibex-7819817_640.jpg"}
+                    alt=""
+                  />
+                  <p className="font-semibold ml-4">{user?.reqUser?.username}</p>
+                </div>
+                <div className="px-2">
+                  <textarea
+                    className="captionInput"
+                    placeholder="Write a description..."
+                    name="caption"
+                    rows="8"
+                    value={postData.caption}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="flex justify-between px-2">
+                  <GrEmoji />
+                  <p className="opacity-70">{postData.caption?.length}/2,200</p>
+                </div>
+                <hr />
+                <div className="p-2 flex justify-between items-center">
+                  <input
+                    className="locationInput"
+                    type="text"
+                    placeholder="Add Location"
+                    name="location"
+                    value={postData.location}
+                    onChange={handleInputChange}
+                  />
+                  <GoLocation />
+                </div>
+                <hr />
+              </div>
+            </div>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    </div>
+  );
+};
+
 
 
   export default CreatePostModal;
