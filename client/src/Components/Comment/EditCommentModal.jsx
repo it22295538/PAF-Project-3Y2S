@@ -33,7 +33,9 @@ import {
   
               <hr />
   
-              
+              <p className="font-bold py-3 text-red-600 text-center">
+                Edit
+              </p>
               <hr />
               <p className=" py-3 text-center" onClick={onClose}>
                 Cancel
