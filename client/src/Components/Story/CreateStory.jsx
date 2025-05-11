@@ -26,6 +26,19 @@ const CreateStory = () => {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      
+      if (!selectedFile) {
+        alert("Please select an image");
+        setLoading(false);
+        return;
+      }
 
+      
+
+ 
 
 export default CreateStory; 
