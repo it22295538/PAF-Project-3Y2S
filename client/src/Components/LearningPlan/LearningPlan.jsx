@@ -716,13 +716,7 @@ const LearningPlan = () => {
               placeholder="https://example.com/resource" 
             />
           </Form.Item>
-          <Form.Item 
-            name="description" 
-            label="Description (Optional)"
-            rules={[{ max: 200, message: 'Description must be less than 200 characters' }]}
-          >
-            <Input placeholder="Brief description of the resource" />
-          </Form.Item>
+         
         </Form>
       </Modal>
     </div>
