@@ -151,13 +151,7 @@ const LearningProgress = () => {
             </Form.Item>
           )}
 
-          <Form.Item
-            name="title"
-            label="Title"
-            rules={[{ required: true, message: "Please enter a title" }]}
-          >
-            <Input placeholder="e.g., Completed React Bootcamp" />
-          </Form.Item>
+         
 
           <Form.Item
             name="content"
