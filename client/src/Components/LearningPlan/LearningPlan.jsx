@@ -665,7 +665,7 @@ const LearningPlan = () => {
             name="title" 
             label="Topic Title" 
             rules={[
-              { required: true, message: 'Please input the topic title!' },
+              { required: true, message: 'Please input topic title!' },
               { max: 100, message: 'Title must be less than 100 characters' }
             ]}
           >
@@ -716,7 +716,13 @@ const LearningPlan = () => {
               placeholder="https://example.com/resource" 
             />
           </Form.Item>
-         
+          <Form.Item 
+            name="description" 
+            label="Description (Optional)"
+            rules={[{ max: 200, message: 'Description must be less than 200 characters' }]}
+          >
+            <Input placeholder="Brief description of the resource" />
+          </Form.Item>
         </Form>
       </Modal>
     </div>
