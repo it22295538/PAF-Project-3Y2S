@@ -81,10 +81,7 @@ import {
         } else return;
       };
 
-      const handleClose = () => {
-        onClose();
-        navigate("/");
-      };
+      
     
 
       return (
