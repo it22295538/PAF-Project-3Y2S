@@ -84,22 +84,21 @@ const CommentCard = ({ comment }) => {
             <div className="flex items-center space-x-3 text-xs opacity-60 pt-2">
               <span>{timeDifference(comment?.createdAt)}</span>
               {commentLikes > 0 && <span>{commentLikes} like</span>}
-              {user?.reqUser?.id === comment?.userDto?.id && (
-                <>
-                  <BsPencil
-                    className="cursor-pointer"
-                    onClick={handleClickOnEditComment}
-                  />
-                  <MdDelete
-                    className="cursor-pointer "
-                    onClick={handleDeleteComment}
-                  />
-                </>
-              )}
+              
             </div>
           </div>
         </div>
-        
+        {isCommentLiked ? (
+          <AiFillHeart
+            onClick={handleUnLikeComment}
+            className="text-xs hover:opacity-50 cursor-pointer text-red-600"
+          />
+        ) : (
+          <AiOutlineHeart
+            onClick={handleLikeComment}
+            className="text-xs hover:opacity-50 cursor-pointer "
+          />
+        )}
       </div>
       {isEditCommentInputOpen && (
         <div>
