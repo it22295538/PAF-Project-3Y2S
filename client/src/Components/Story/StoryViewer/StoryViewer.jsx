@@ -60,6 +60,26 @@ function StoryViewer({ stories }) {
 
   console.log("story ---- ",stories)
 
-  
+  return (
+    <div className='relative w-full'>
+       <StoryViewerContainer tabIndex={0} onKeyDown={handleKeyDown}>
+      { <StoryImage src={stories?.[currentStoryIndex].image} alt="story image"/>}
+   
+    </StoryViewerContainer>
+    <div className='absolute top-0 flex w-full'>
+      {stories.map((story, index) => (
+        <StoryProgressBar
+          key={index}
+          duration={2000}
+          index={index}
+          activeIndex={activeIndex}
+          // setActiveIndex={setActiveIndex}
+        />
+      ))}
+    </div>
+    
+    </div>
+   
+  );
 }
  export default StoryViewer;
