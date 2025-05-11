@@ -70,11 +70,9 @@ export const unLikeComment=(data)=>async(dispatch)=>{
     dispatch({type:UNLIKE_COMMENT,paylod:resData});
   }
 
-  
-
-  export const deleteComment=(data)=>async(dispatch)=>{
-    const res = await fetch(`${BASE_URL}/api/comments/delete/${data.commentId}`,{
-        method:"DELETE",
+  export const editComment=(data)=>async(dispatch)=>{
+    const res = await fetch(`${BASE_URL}/api/comments/edit`,{
+        method:"PUT",
         headers:{
             "Content-Type":"application/json",
             Authorization:'Bearer '+data.jwt,
@@ -82,8 +80,10 @@ export const unLikeComment=(data)=>async(dispatch)=>{
         body:JSON.stringify(data.data)
     })
     const resData=await res.json();
-    console.log("deleted comment ",resData)
-    dispatch({type:DELETE_COMMENT,payload:resData});
+    console.log("edited comment ",resData)
+    dispatch({type:EDIT_COMMENT,payload:resData});
   }
+
+  
 
   
