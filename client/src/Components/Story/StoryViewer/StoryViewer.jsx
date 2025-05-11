@@ -17,6 +17,12 @@ const StoryImage = styled.img`
   object-fit: contain;
 `;
 
+function StoryViewer({ stories }) {
+  const [currentStoryIndex, setCurrentStoryIndex] = useState(0);
+  const [currentUserStoryIndex,setCurrentUserStoryIndex]=useState(0);
+
+
+  const [activeIndex, setActiveIndex] = useState(0);
 
   
 
