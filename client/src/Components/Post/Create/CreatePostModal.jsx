@@ -90,6 +90,43 @@ const CreatePostModal = ({ onOpen, isOpen, onClose }) => {
     }
   };
 
+  const handleNextMedia = () => {
+    setCurrentMediaIndex(prev => 
+      prev === postData.mediaUrls.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const handlePrevMedia = () => {
+    setCurrentMediaIndex(prev => 
+      prev === 0 ? postData.mediaUrls.length - 1 : prev - 1
+    );
+  };
+
+  const handleSubmit = async () => {
+    if (!token || postData.mediaUrls.length === 0) return;
+    
+    const data = {
+      jwt: token,
+      data: postData,
+    };
+    
+    dispatch(createPost(data));
+    handleClose();
+  };
+
+  const handleClose = () => {
+    onClose();
+    setFiles([]);
+    setIsDragOver(false);
+    setPostData({ mediaUrls: [], caption: '', location: "" });
+    setUploadStatus("");
+    setCurrentMediaIndex(0);
+  };
+
+  const isVideo = (url) => {
+    return url.match(/\.(mp4|webm|ogg)$/i);
+  };
+
 
 
   export default CreatePostModal;
