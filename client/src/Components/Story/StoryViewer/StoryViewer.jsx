@@ -55,7 +55,10 @@ function StoryViewer({ stories }) {
       
     }, 2000);
 
-   
+    return () => clearInterval(intervalId);
+  }, [currentStoryIndex]);
+
+  console.log("story ---- ",stories)
 
   
 }
