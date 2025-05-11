@@ -42,19 +42,7 @@ export const createComment = (data) => async (dispatch) => {
     dispatch({type:"GET_USER_POST",paylod:resData});
 }
 
-export const likeComment=(data)=>async(dispatch)=>{
-    const res= await fetch(`${BASE_URL}/api/comments/like/${data.commentId}`,{
-        method:"PUT",
-        headers:{
-            "Content-Type":"application/json",
-            Authorization:'Bearer '+data.jwt,
-        },
-        body:JSON.stringify(data.data)
-    })
-    const resData=await res.json();
-    console.log("like comment :- ",resData)
-    dispatch({type:LIKE_COMMENT,paylod:resData});
-}
+
 
 export const unLikeComment=(data)=>async(dispatch)=>{
     const res = await fetch(`${BASE_URL}/api/comments/unlike/${data.commentId}`,{
@@ -98,21 +86,4 @@ export const unLikeComment=(data)=>async(dispatch)=>{
     dispatch({type:DELETE_COMMENT,payload:resData});
   }
 
-  export const getAllComments=(data)=>async(dispatch)=>{
-  try {
-    const res=await fetch(`${BASE_URL}/api/comments/post/${data.postId}`,{
-      method:"GET",
-      headers:{
-          "Content-Type":"application/json",
-          Authorization:'Bearer '+data.jwt,
-      },
-    
-  })
-  const resData=await res.json();
-  console.log("all comment ",resData)
-  dispatch({type:GET_ALL_COMMENT,payload:resData});
-    
-  } catch (error) {
-    
-  }
-}
+  
