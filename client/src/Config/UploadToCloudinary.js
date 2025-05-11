@@ -1,6 +1,7 @@
 export const uploadToCloudinary = async (file) => {
   if (!file) return null;
 
+  
   try {
     const data = new FormData();
     data.append("file", file);
