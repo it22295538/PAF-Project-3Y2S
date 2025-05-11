@@ -11,6 +11,11 @@ const StoryViewerContainer = styled.div`
   
 `;
 
+const StoryImage = styled.img`
+  
+  max-height: 90vh;
+  object-fit: contain;
+`;
 
 
   
