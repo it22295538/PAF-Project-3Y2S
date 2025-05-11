@@ -99,20 +99,20 @@ export const unLikeComment=(data)=>async(dispatch)=>{
   }
 
   export const getAllComments=(data)=>async(dispatch)=>{
-    try {
-      const res=await fetch(`${BASE_URL}/api/comments/post/${data.postId}`,{
-        method:"GET",
-        headers:{
-            "Content-Type":"application/json",
-            Authorization:'Bearer '+data.jwt,
-        },
-      
-    })
-    const resData=await res.json();
-    console.log("all comment ",resData)
-    dispatch({type:GET_ALL_COMMENT,payload:resData});
-      
-    } catch (error) {
-      
-    }
+  try {
+    const res=await fetch(`${BASE_URL}/api/comments/post/${data.postId}`,{
+      method:"GET",
+      headers:{
+          "Content-Type":"application/json",
+          Authorization:'Bearer '+data.jwt,
+      },
+    
+  })
+  const resData=await res.json();
+  console.log("all comment ",resData)
+  dispatch({type:GET_ALL_COMMENT,payload:resData});
+    
+  } catch (error) {
+    
   }
+}
