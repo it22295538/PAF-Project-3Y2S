@@ -111,18 +111,7 @@ const CommentCard = ({ comment }) => {
           />
         )}
       </div>
-      {isEditCommentInputOpen && (
-        <div>
-          <input
-            className=" outline-none border-b border-black text-sm"
-            placeholder="Add Comment..."
-            type="text"
-            onKeyPress={handleEditComment}
-            onChange={handleCommnetInputChange}
-            value={commentContent}
-          />
-        </div>
-      )}
+      
     </div>
   );
 
