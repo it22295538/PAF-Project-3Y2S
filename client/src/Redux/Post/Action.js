@@ -5,8 +5,10 @@ import {
   EDIT_POST,
   GET_SINGLE_POST,
   GET_USER_POST,
+  LIKE_POST,
   REQ_USER_POST,
   SAVE_POST,
+  UNLIKE_POST,
   UNSAVE_POST,
   GET_ALL_POSTS,
 } from "./ActionType";
@@ -92,6 +94,90 @@ export const reqUserPostAction = (data) => async (dispatch) => {
     console.log("catch error ---- ",error)
   }
 
+};
+
+
+export const likePostAction = (data) => async (dispatch) => {
+  // console.log("data --------- ",data)
+
+  try {
+    
+  const res = await fetch(
+    `${BASE_URL}/api/posts/like/${data.postId}`,
+    {
+      method: "PUT",
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + data.jwt,
+      },
+
+      body: JSON.stringify(data.data),
+    }
+  );
+
+  const resData = await res.json();
+
+  // console.log("like post action", resData);
+
+  dispatch({ type: LIKE_POST, payload: resData });
+
+  } catch (error) {
+    console.log("error - ",error)
+  }
+
+};
+
+export const unLikePostAction = (data) => async (dispatch) => {
+  // console.log("data --------- ",data)
+
+  try {
+    
+  const res = await fetch(
+    `${BASE_URL}/api/posts/unlike/${data.postId}`,
+    {
+      method: "PUT",
+
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + data.jwt,
+      },
+
+      body: JSON.stringify(data.data),
+    }
+  );
+
+  const resData = await res.json();
+
+  console.log("unlike post action", resData);
+
+  dispatch({ type: UNLIKE_POST, payload: resData });
+
+  } catch (error) {
+    console.log("error - ",error)
+  }
+
+};
+
+
+export const savePostAction = (data) => async (dispatch) => {
+
+  try {
+    const res = await fetch(`${BASE_URL}/api/posts/save_post/${data.postId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + data.jwt,
+    },
+  });
+  const savedPost = await res.json();
+
+  console.log("saved post", savedPost);
+  dispatch({ type: SAVE_POST, payload: savedPost });
+  } catch (error) {
+    console.log("catch error ", error)
+  }
+  
 };
 
 
