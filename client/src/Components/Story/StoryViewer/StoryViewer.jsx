@@ -2,6 +2,14 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import StoryProgressBar from '../../Demo/StoryProgress';
 
+const StoryViewerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #333;
+  
+`;
 
 
 
