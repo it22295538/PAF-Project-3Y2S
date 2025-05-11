@@ -61,6 +61,50 @@ const CreateStory = () => {
     }
   };
 
- 
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 rounded-lg shadow-md w-96">
+        <h2 className="text-2xl font-bold mb-6">Create Story</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-6">
+            <div className="flex flex-col items-center justify-center border-2 border-dashed border-gray-300 rounded-lg p-6 cursor-pointer" onClick={() => document.getElementById('fileInput').click()}>
+              {previewImage ? (
+                <img src={previewImage} alt="Preview" className="max-h-60 object-contain mb-4" />
+              ) : (
+                <>
+                  <AiOutlineCloudUpload className="text-4xl text-gray-400 mb-2" />
+                  <p className="text-gray-500">Click to upload image</p>
+                </>
+              )}
+              <input
+                type="file"
+                id="fileInput"
+                accept="image/*"
+                onChange={handleFilePick}
+                className="hidden"
+              />
+            </div>
+          </div>
+          <div className="mb-6">
+            <input
+              type="text"
+              value={caption}
+              onChange={(e) => setCaption(e.target.value)}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Add a caption..."
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-2 px-4 rounded-md text-white ${loading ? 'bg-blue-300' : 'bg-blue-500 hover:bg-blue-600'}`}
+          >
+            {loading ? 'Creating Story...' : 'Create Story'}
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
 export default CreateStory; 
