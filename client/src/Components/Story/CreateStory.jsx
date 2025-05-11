@@ -37,7 +37,29 @@ const CreateStory = () => {
         return;
       }
 
+      // Upload image to Cloudinary
+      const imageUrl = await uploadToCloudinary(selectedFile);
       
+      if (!imageUrl) {
+        alert("Failed to upload image");
+        setLoading(false);
+        return;
+      }
+
+      const storyData = {
+        image: imageUrl,
+        captions: caption
+      };
+
+      await dispatch(createStory({ story: storyData, jwt: token }));
+      setLoading(false);
+      navigate("/");
+    } catch (error) {
+      console.error("Error creating story:", error);
+      setLoading(false);
+      alert("Failed to create story");
+    }
+  };
 
  
 
