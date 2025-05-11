@@ -56,10 +56,8 @@ export const likeComment=(data)=>async(dispatch)=>{
     dispatch({type:LIKE_COMMENT,paylod:resData});
 }
 
-
-
-  export const editComment=(data)=>async(dispatch)=>{
-    const res = await fetch(`${BASE_URL}/api/comments/edit`,{
+export const unLikeComment=(data)=>async(dispatch)=>{
+    const res = await fetch(`${BASE_URL}/api/comments/unlike/${data.commentId}`,{
         method:"PUT",
         headers:{
             "Content-Type":"application/json",
@@ -68,9 +66,11 @@ export const likeComment=(data)=>async(dispatch)=>{
         body:JSON.stringify(data.data)
     })
     const resData=await res.json();
-    console.log("edited comment ",resData)
-    dispatch({type:EDIT_COMMENT,payload:resData});
+    console.log("unliked comment ",resData)
+    dispatch({type:UNLIKE_COMMENT,paylod:resData});
   }
+
+  
 
   export const deleteComment=(data)=>async(dispatch)=>{
     const res = await fetch(`${BASE_URL}/api/comments/delete/${data.commentId}`,{
