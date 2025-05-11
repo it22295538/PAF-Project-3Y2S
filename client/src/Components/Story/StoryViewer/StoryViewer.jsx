@@ -42,6 +42,13 @@ function StoryViewer({ stories }) {
     }
   };
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'ArrowRight') {
+      handleNextStory();
+    } else if (event.key === 'ArrowLeft') {
+      handlePrevStory();
+    }
+  };
   
 
    
