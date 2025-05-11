@@ -59,7 +59,27 @@ import {
         }
       }, [postId, comments?.createdComment, comments?.deletedComment, comments?. updatedComment]);
     
-      
+      const handleAddComment = () => {
+        const data = {
+          jwt,
+          postId,
+          data: {
+            content: commentContent,
+          },
+        };
+        console.log("comment content ", commentContent);
+        dispatch(createComment(data));
+        setCommentContent("");
+      };
+
+      const handleCommnetInputChange = (e) => {
+        setCommentContent(e.target.value);
+      };
+      const handleOnEnterPress = (e) => {
+        if (e.key === "Enter") {
+          handleAddComment();
+        } else return;
+      };
 
       const handleClose = () => {
         onClose();
