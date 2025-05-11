@@ -22,9 +22,6 @@ export const commentReducer=(store=initialState,{type,payload})=>{
     else if(type===EDIT_COMMENT){
         return {...store, updatedComment:payload}
     }
-    else if(type===DELETE_COMMENT){
-        return{...store,deletedComment:payload}
-    }
     else if(type===GET_ALL_COMMENT){
         return{...store,comments:payload}
     }
